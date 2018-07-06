@@ -7,8 +7,8 @@ export default async function upload({
   const response = await client.post(
     `spaces/${spaceId}/assets`,
     { filename: file.name },
-    { headers: { Authorization: accessToken },
-  });
+    { headers: { Authorization: accessToken } },
+  );
 
   return new Promise((resolve, reject) => {
     const formData = new FormData();
