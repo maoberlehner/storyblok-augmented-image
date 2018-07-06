@@ -2,9 +2,9 @@
   <div>
     <input type="file" @change="uploadImage">
 
-    <div v-if="model.imageUrl">
-      <img class="image" :src="model.imageUrl.replace('a.storyblok.com', 'img2.storyblok.com/160x90/filters:fill(auto,0)')">
-      <input type="text" v-model="model.imageUrl">
+    <div v-if="model.image">
+      <img class="image" :src="model.image.replace('a.storyblok.com', 'img2.storyblok.com/160x90/filters:fill(auto,0)')">
+      <input type="text" v-model="model.image">
       <button @click.prevent="removeImage">Remove</button>
     </div>
   </div>
@@ -27,16 +27,15 @@ export default {
         plugin: 'augmented-image',
         title: 'Your title',
         description: 'Your description',
-        imageUrl: null,
+        image: null,
       };
     },
     pluginCreated() {
       console.log('plugin:created');
     },
-    uploadImage: function (e) {
+    uploadImage(e) {
       const file = e.target.files[0];
-      console.log(this.token, this.api);
-      this.api.client.post(`spaces/${this.spaceId}/assets`, { filename: file.name }, { headers: { Authorization: '' } })
+      this.api.client.post(`spaces/${this.spaceId}/assets`, { filename: file.name }, { headers: { Authorization: this.options.accessToken } })
         .then(res => {
           let form_data = new FormData()
           let xhr = new XMLHttpRequest()
@@ -46,7 +45,6 @@ export default {
           }
 
           form_data.set('file', file);
-          console.log(e, file);
           xhr.onreadystatechange = () => {
             if (xhr.readyState === 4) {
               if (xhr.status == 204 || xhr.status == 200 || xhr.status == 201) {
