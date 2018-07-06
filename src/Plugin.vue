@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import upload from './utils/upload';
+
 export default {
   mixins: [window.Storyblok.plugin],
   watch: {
@@ -33,30 +35,18 @@ export default {
     pluginCreated() {
       console.log('plugin:created');
     },
-    uploadImage(e) {
-      const file = e.target.files[0];
-      this.api.client.post(`spaces/${this.spaceId}/assets`, { filename: file.name }, { headers: { Authorization: this.options.accessToken } })
-        .then(res => {
-          let form_data = new FormData()
-          let xhr = new XMLHttpRequest()
-
-          for (var key in res.data.fields) {
-            form_data.set(key, res.data.fields[key])
-          }
-
-          form_data.set('file', file);
-          xhr.onreadystatechange = () => {
-            if (xhr.readyState === 4) {
-              if (xhr.status == 204 || xhr.status == 200 || xhr.status == 201) {
-                this.model.image = res.data.pretty_url;
-              } else {
-                console.log('Error during upload with status: ', xhr.status);
-              }
-            }
-          }
-          xhr.open('POST', res.data.post_url)
-          xhr.send(form_data)
+    async uploadImage(e) {
+      try {
+        const data = await upload({
+          accessToken: this.options.accessToken,
+          client: this.api.client,
+          file: e.target.files[0],
+          spaceId: this.spaceId,
         });
+        this.model.image = data.pretty_url;
+      } catch (error) {
+        console.log(error);
+      }
     },
     removeImage() {},
   },
