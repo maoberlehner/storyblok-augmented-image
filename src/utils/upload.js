@@ -5,7 +5,7 @@ export default async function upload({
   spaceId,
 }) {
   const response = await client.post(
-    `spaces/${spaceId}/assets`,
+    `https://app.storyblok.com/v1/spaces/${spaceId}/assets`,
     { filename: file.name },
     { headers: { Authorization: accessToken } },
   );
