@@ -21,7 +21,7 @@
       </a>
       <a
         class="image__btn"
-        @click.prevent="removeImage"
+        @click.prevent="$emit('input', '')"
       >
         <i class="uk-icon-close"></i>
       </a>
@@ -83,7 +83,6 @@ export default {
         console.log(error);
       }
     },
-    removeImage() {},
   },
 };
 </script>
