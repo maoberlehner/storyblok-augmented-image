@@ -21,33 +21,47 @@
               @click="setCoordinates($event.target, $event.offsetX, $event.offsetY, augmentation)"
             >
             <span
-              class="augmentation-picker__marker"
               :style="`top:${augmentation.y}%;left:${augmentation.x}%;`"
-            >
-            </span>
+              class="augmentation-picker__marker"
+            />
           </div>
           <div class="uk-flex">
             <div class="uk-flex-item-auto tree__form-group">
-              <label class="form__topic" :for="`augmentation-x-${index}`">X %</label>
+              <label
+                :for="`augmentation-x-${index}`"
+                class="form__topic"
+              >
+                X %
+              </label>
               <input
                 :id="`augmentation-x-${index}`"
-                class="uk-form-small"
                 v-model="augmentation.x"
+                class="uk-form-small"
               >
             </div>
 
             <div class="uk-flex-item-auto uk-margin-small-left tree__form-group">
-              <label class="form__topic" :for="`augmentation-y-${index}`">Y %</label>
+              <label
+                :for="`augmentation-y-${index}`"
+                class="form__topic"
+              >
+                Y %
+              </label>
               <input
                 :id="`augmentation-Y-${index}`"
-                class="uk-form-small"
                 v-model="augmentation.y"
+                class="uk-form-small"
               >
             </div>
           </div>
 
           <div class="uk-flex-item-auto tree__form-group">
-            <span class="form__topic" :for="`augmentation-x-${index}`">Augmentation image</span>
+            <span
+              :for="`augmentation-x-${index}`"
+              class="form__topic"
+            >
+              Augmentation image
+            </span>
             <image-upload
               v-model="augmentation.image"
               :access-token="options.accessToken"
@@ -63,25 +77,23 @@
       class="blok__full-btn"
       @click="addAugmentation"
     >
-      <i class="uk-icon-plus-circle uk-margin-small-right"></i> Add augmentation
+      <i class="uk-icon-plus-circle uk-margin-small-right"/> Add augmentation
     </a>
   </div>
 </template>
 
 <script>
-import upload from './utils/upload';
-
 import ImageUpload from './ImageUpload.vue';
 
 export default {
-  mixins: [window.Storyblok.plugin],
   components: {
     ImageUpload,
   },
+  mixins: [window.Storyblok.plugin],
   watch: {
     model: {
       handler(value) {
-        this.$emit('changed-model', value);
+        this.$emit(`changed-model`, value);
       },
       deep: true,
     },
@@ -90,27 +102,25 @@ export default {
     initWith() {
       return {
         augmentations: [],
-        description: 'Your description',
-        image: '',
-        plugin: 'augmented-image',
-        title: 'Your title',
+        description: `Your description`,
+        image: ``,
+        plugin: `augmented-image`,
+        title: `Your title`,
       };
-    },
-    pluginCreated() {
-      console.log('plugin:created');
     },
     addAugmentation() {
       this.model.augmentations.push({
-        image: '',
+        image: ``,
         x: 0,
         y: 0,
       });
     },
     setCoordinates(element, offsetX, offsetY, augmentation) {
-      const width = element.width;
-      const height = element.height;
+      const { height, width } = element;
 
+      // eslint-disable-next-line no-param-reassign
       augmentation.x = parseFloat((offsetX / (width / 100)).toFixed(2));
+      // eslint-disable-next-line no-param-reassign
       augmentation.y = parseFloat((offsetY / (height / 100)).toFixed(2));
     },
   },
@@ -130,10 +140,10 @@ export default {
 
 .augmentation-picker__marker {
   position: absolute;
-  width: 16px;
-  height: 16px;
   margin-top: -8px;
   margin-left: -8px;
+  width: 16px;
+  height: 16px;
 }
 
 .augmentation-picker__marker::before,
@@ -144,14 +154,14 @@ export default {
 }
 
 .augmentation-picker__marker::before {
+  left: 7px;
   width: 2px;
   height: 100%;
-  left: 7px;
 }
 
 .augmentation-picker__marker::after {
+  top: 7px;
   width: 100%;
   height: 2px;
-  top: 7px;
 }
 </style>

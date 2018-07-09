@@ -1,4 +1,5 @@
-import Plugin from '../Plugin.vue'
-let init = Plugin.methods.initWith()
+import Plugin from '../Plugin.vue';
 
-window.storyblok.field_types[init.plugin] = Plugin
+const init = Plugin.methods.initWith();
+
+window.storyblok.field_types[init.plugin] = Plugin;

@@ -1,2 +1,3 @@
-import Plugin from '../Plugin.vue'
-window.Fieldtype = Plugin
+import Plugin from '../Plugin.vue';
+
+window.Fieldtype = Plugin;

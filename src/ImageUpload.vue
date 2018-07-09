@@ -5,31 +5,31 @@
       class="uk-flex uk-flex-middle uk-margin-small-bottom"
     >
       <img
-        class="image"
         :src="previewImage"
+        class="image"
       >
       <input
-        class="uk-form-small uk-flex-item-auto"
         v-model="value"
+        class="uk-form-small uk-flex-item-auto"
       >
       <a
+        :href="value"
         class="image__btn"
         target="_blank"
-        :href="value"
       >
-        <i class="uk-icon-search"></i>
+        <i class="uk-icon-search"/>
       </a>
       <a
         class="image__btn"
         @click.prevent="$emit('input', '')"
       >
-        <i class="uk-icon-close"></i>
+        <i class="uk-icon-close"/>
       </a>
     </div>
     <hr v-if="value">
     <label class="uk-form-file uk-button uk-button-small uk-button-primary">
       <span class="util__nobreak">
-        <i class="uk-icon-upload"></i> Upload new
+        <i class="uk-icon-upload"/> Upload new
       </span>
       <input
         class="upload-select"
@@ -49,7 +49,7 @@ export default {
     value: {
       type: String,
       required: true,
-      default: '',
+      default: ``,
     },
     accessToken: {
       type: String,
@@ -66,7 +66,8 @@ export default {
   },
   computed: {
     previewImage() {
-      return this.value.replace('a.storyblok.com', 'img2.storyblok.com/160x90/filters:fill(auto,0)');
+      // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+      return this.value.replace(`a.storyblok.com`, `img2.storyblok.com/160x90/filters:fill(auto,0)`);
     },
   },
   methods: {
@@ -78,8 +79,9 @@ export default {
           file: e.target.files[0],
           spaceId: this.spaceId,
         });
-        this.$emit('input', data.pretty_url);
+        this.$emit(`input`, data.pretty_url);
       } catch (error) {
+        // eslint-disable-next-line no-console
         console.log(error);
       }
     },

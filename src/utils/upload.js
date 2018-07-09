@@ -14,11 +14,11 @@ export default async function upload({
     const formData = new FormData();
     const xhr = new XMLHttpRequest();
 
-    for (var key in response.data.fields) {
-      formData.set(key, response.data.fields[key])
-    }
+    Object.keys(response.data.fields).forEach((key) => {
+      formData.set(key, response.data.fields[key]);
+    });
 
-    formData.set('file', file);
+    formData.set(`file`, file);
     xhr.onreadystatechange = () => {
       const allowedStatuses = [200, 201, 204];
 
@@ -26,11 +26,11 @@ export default async function upload({
         if (allowedStatuses.includes(xhr.status)) {
           resolve(response.data);
         } else {
-          reject(`Error during upload with status: ${xhr.status}`);
+          reject(new Error(`Error during upload with status: ${xhr.status}`));
         }
       }
-    }
-    xhr.open('POST', response.data.post_url);
+    };
+    xhr.open(`POST`, response.data.post_url);
     xhr.send(formData);
   });
-};
+}
