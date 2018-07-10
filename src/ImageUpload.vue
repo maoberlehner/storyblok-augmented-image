@@ -45,23 +45,14 @@
 import upload from './utils/upload';
 
 export default {
+  inject: [
+    `plugin`,
+  ],
   props: {
     value: {
       type: String,
       required: true,
       default: ``,
-    },
-    accessToken: {
-      type: String,
-      required: true,
-    },
-    apiClient: {
-      type: Function,
-      required: true,
-    },
-    spaceId: {
-      type: Number,
-      required: true,
     },
   },
   computed: {
@@ -74,10 +65,10 @@ export default {
     async uploadImage(e) {
       try {
         const data = await upload({
-          accessToken: this.accessToken,
-          client: this.apiClient,
+          accessToken: this.plugin.options.accessToken,
+          client: this.plugin.api.client,
           file: e.target.files[0],
-          spaceId: this.spaceId,
+          spaceId: this.plugin.spaceId,
         });
         this.$emit(`input`, data.pretty_url);
       } catch (error) {

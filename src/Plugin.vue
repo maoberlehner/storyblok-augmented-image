@@ -1,11 +1,6 @@
 <template>
   <div>
-    <image-upload
-      v-model="model.image"
-      :access-token="options.accessToken"
-      :api-client="api.client"
-      :space-id="spaceId"
-    />
+    <image-upload v-model="model.image"/>
 
     <div class="blok__comp-container">
       <div
@@ -62,12 +57,7 @@
             >
               Augmentation image
             </span>
-            <image-upload
-              v-model="augmentation.image"
-              :access-token="options.accessToken"
-              :api-client="api.client"
-              :space-id="spaceId"
-            />
+            <image-upload v-model="augmentation.image"/>
           </div>
         </div>
       </div>
@@ -90,6 +80,11 @@ export default {
     ImageUpload,
   },
   mixins: [window.Storyblok.plugin],
+  provide() {
+    return {
+      plugin: this,
+    };
+  },
   watch: {
     model: {
       handler(value) {
