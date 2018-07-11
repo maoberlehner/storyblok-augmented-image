@@ -48,10 +48,8 @@ export default {
     initWith() {
       return {
         augmentations: [],
-        description: `Your description`,
         image: ``,
         plugin: `augmented-image`,
-        title: `Your title`,
       };
     },
     addAugmentation() {
