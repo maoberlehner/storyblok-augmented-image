@@ -1,7 +1,15 @@
 <template>
   <div class="blok__comp-augmentation">
     <template v-if="augmentedImage">
-      <p>Click on the image to set a marker for the augmentation position.</p>
+      <p>
+        <a
+          class="augmentation-picker__remove"
+          @click="$emit(`remove`)"
+        >
+          <i class="uk-icon-trash uk-margin-small-left"/>
+        </a>
+        Click on the image to set a marker for the augmentation position.
+      </p>
       <div class="augmentation-picker">
         <img
           :src="augmentedImage.replace('a.storyblok.com', 'img2.storyblok.com/300x0')"
@@ -142,6 +150,17 @@ export default {
 
 .augmentation-picker {
   position: relative;
+}
+
+.augmentation-picker__remove {
+  float: right;
+  color: #888;
+  transition: color 0.2s;
+}
+
+.augmentation-picker__remove:hover,
+.augmentation-picker__remove:focus {
+  color: inherit;
 }
 
 .augmentation-picker__marker {

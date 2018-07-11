@@ -8,6 +8,7 @@
         :key="index"
         :augmented-image="model.image"
         v-model="model.augmentations[index]"
+        @remove="removeAugmentation(index)"
       />
     </div>
 
@@ -61,6 +62,9 @@ export default {
         x: 0,
         y: 0,
       });
+    },
+    removeAugmentation(index) {
+      this.model.augmentations = this.model.augmentations.filter((_, i) => i !== index);
     },
   },
 };
