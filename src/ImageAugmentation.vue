@@ -108,11 +108,11 @@ export default {
   },
   data() {
     return {
-      image: ``,
-      text: ``,
-      title: ``,
-      x: 0,
-      y: 0,
+      image: this.value.image,
+      text: this.value.text,
+      title: this.value.title,
+      x: this.value.x,
+      y: this.value.y,
     };
   },
   methods: {
