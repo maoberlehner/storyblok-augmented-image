@@ -56,6 +56,8 @@ export default {
     addAugmentation() {
       this.model.augmentations.push({
         image: ``,
+        text: ``,
+        title: ``,
         x: 0,
         y: 0,
       });

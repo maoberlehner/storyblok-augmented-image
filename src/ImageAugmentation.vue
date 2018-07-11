@@ -36,7 +36,32 @@
         </div>
       </div>
 
-      <div class="uk-flex-item-auto tree__form-group">
+      <div class="tree__form-group">
+        <label class="form__topic" :for="`title-${_uid}`">
+          Title
+        </label>
+        <input
+          v-model="title"
+          :id="`title-${_uid}`"
+          class="uk-width-1-1"
+          @input="updateValue"
+        >
+      </div>
+
+      <div class="tree__form-group">
+        <label class="form__topic" :for="`text-${_uid}`">
+          Text
+        </label>
+        <textarea
+          v-model="text"
+          :id="`text-${_uid}`"
+          class="uk-width-1-1"
+          rows="5"
+          @input="updateValue"
+        />
+      </div>
+
+      <div class="tree__form-group">
         <span class="form__topic">
           Augmentation image
         </span>
@@ -70,6 +95,8 @@ export default {
   data() {
     return {
       image: ``,
+      text: ``,
+      title: ``,
       x: 0,
       y: 0,
     };
@@ -86,6 +113,8 @@ export default {
     updateValue() {
       this.$emit(`input`, {
         image: this.image,
+        text: this.text,
+        title: this.title,
         x: this.x,
         y: this.y,
       });
