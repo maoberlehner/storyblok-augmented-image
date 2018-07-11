@@ -37,7 +37,10 @@
       </div>
 
       <div class="tree__form-group">
-        <label class="form__topic" :for="`title-${_uid}`">
+        <label
+          :for="`title-${_uid}`"
+          class="form__topic"
+        >
           Title
         </label>
         <input
@@ -49,7 +52,10 @@
       </div>
 
       <div class="tree__form-group">
-        <label class="form__topic" :for="`text-${_uid}`">
+        <label
+          :for="`text-${_uid}`"
+          class="form__topic"
+        >
           Text
         </label>
         <textarea
