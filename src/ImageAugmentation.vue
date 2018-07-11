@@ -149,6 +149,7 @@ export default {
 }
 
 .augmentation-picker {
+  display: inline-block;
   position: relative;
 }
 
