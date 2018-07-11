@@ -13,7 +13,7 @@
     </div>
 
     <a
-      class="blok__full-btn uk-margin-small-top"
+      class="blok__full-btn uk-margin-small-top uk-margin-bottom-remove"
       @click="addAugmentation"
     >
       <i class="uk-icon-plus-circle uk-margin-small-right"/> Add augmentation
