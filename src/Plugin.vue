@@ -2,7 +2,7 @@
   <div>
     <image-upload v-model="model.image"/>
 
-    <div class="blok__comp-container">
+    <div class="blok__comp-container uk-margin-top">
       <image-augmentation
         v-for="(augmentation, index) in model.augmentations"
         :key="index"
@@ -12,7 +12,7 @@
     </div>
 
     <a
-      class="blok__full-btn"
+      class="blok__full-btn uk-margin-small-top"
       @click="addAugmentation"
     >
       <i class="uk-icon-plus-circle uk-margin-small-right"/> Add augmentation
@@ -65,3 +65,9 @@ export default {
   },
 };
 </script>
+
+<style>
+.blok__comp-container > :not(:first-child) {
+  margin-top: 5px;
+}
+</style>
