@@ -54,9 +54,6 @@ export default {
   components: {
     ImageUpload,
   },
-  inject: [
-    `plugin`,
-  ],
   props: {
     augmentedImage: {
       type: String,
