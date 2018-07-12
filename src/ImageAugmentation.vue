@@ -1,6 +1,7 @@
 <template>
   <div class="blok__comp-augmentation">
-    <template v-if="augmentedImage">
+    <p v-if="!augmentedImage">No image selected, please upload an image first.</p>
+    <template v-else>
       <p>
         <a
           class="augmentation-picker__remove"
@@ -21,7 +22,7 @@
         />
       </div>
       <div class="uk-flex">
-        <div class="uk-flex-item-auto tree__form-group">
+        <div class="tree__form-group">
           <label class="form__topic">
             X %
             <input
@@ -32,7 +33,7 @@
           </label>
         </div>
 
-        <div class="uk-flex-item-auto uk-margin-small-left tree__form-group">
+        <div class="uk-margin-small-left tree__form-group">
           <label class="form__topic">
             Y %
             <input
@@ -77,7 +78,7 @@
 
       <div class="tree__form-group">
         <span class="form__topic">
-          Augmentation image
+          Image
         </span>
         <image-upload
           v-model="image"
@@ -85,7 +86,6 @@
         />
       </div>
     </template>
-    <p v-else>No image selected, please upload an image first.</p>
   </div>
 </template>
 
