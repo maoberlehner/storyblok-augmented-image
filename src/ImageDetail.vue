@@ -1,28 +1,28 @@
 <template>
-  <div class="blok__comp-augmentation">
+  <div class="blok__comp-detail">
     <p v-if="!augmentedImage">No image selected, please upload an image first.</p>
     <template v-else>
       <p>
         <a
-          class="augmentation-picker__remove"
+          class="detail-picker__remove"
           @click="$emit(`remove`)"
         >
           <i class="uk-icon-trash uk-margin-small-left"/>
         </a>
-        Click on the image to set a marker for the augmentation position.
+        Click on the image to set a marker for the detail position.
       </p>
-      <div class="augmentation-picker">
+      <div class="detail-picker">
         <img
           :src="augmentedImage.replace('a.storyblok.com', 'img2.storyblok.com/300x0')"
           @click="setCoordinates"
         >
         <span
           :style="`top:${y}%;left:${x}%;`"
-          class="augmentation-picker__marker"
+          class="detail-picker__marker"
         />
       </div>
-      <div class="uk-flex">
-        <div class="tree__form-group">
+      <div class="uk-flex tree__form-group">
+        <div>
           <label class="form__topic">
             X %
             <input
@@ -33,7 +33,7 @@
           </label>
         </div>
 
-        <div class="uk-margin-small-left tree__form-group">
+        <div class="uk-margin-small-left">
           <label class="form__topic">
             Y %
             <input
@@ -138,33 +138,33 @@ export default {
 </script>
 
 <style>
-.blok__comp-augmentation {
+.blok__comp-detail {
   padding: 15px;
   border: 1px solid #d4d4d4;
   border-radius: 3px;
 }
 
-.blok__comp-augmentation p:last-child {
+.blok__comp-detail p:last-child {
   margin-bottom: 0;
 }
 
-.augmentation-picker {
+.detail-picker {
   display: inline-block;
   position: relative;
 }
 
-.augmentation-picker__remove {
+.detail-picker__remove {
   float: right;
   color: #888;
   transition: color 0.2s;
 }
 
-.augmentation-picker__remove:hover,
-.augmentation-picker__remove:focus {
+.detail-picker__remove:hover,
+.detail-picker__remove:focus {
   color: inherit;
 }
 
-.augmentation-picker__marker {
+.detail-picker__marker {
   position: absolute;
   margin-top: -8px;
   margin-left: -8px;
@@ -172,20 +172,20 @@ export default {
   height: 16px;
 }
 
-.augmentation-picker__marker::before,
-.augmentation-picker__marker::after {
+.detail-picker__marker::before,
+.detail-picker__marker::after {
   position: absolute;
   background-color: #fff;
   content: '';
 }
 
-.augmentation-picker__marker::before {
+.detail-picker__marker::before {
   left: 7px;
   width: 2px;
   height: 100%;
 }
 
-.augmentation-picker__marker::after {
+.detail-picker__marker::after {
   top: 7px;
   width: 100%;
   height: 2px;
