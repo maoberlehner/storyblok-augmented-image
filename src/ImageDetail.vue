@@ -13,7 +13,7 @@
       </p>
       <div class="detail-picker">
         <img
-          :src="augmentedImage.replace('a.storyblok.com', 'img2.storyblok.com/300x0')"
+          :src="augmentedImage.replace(`a.storyblok.com`, `img2.storyblok.com/300x0`)"
           @click="setCoordinates"
         >
         <span

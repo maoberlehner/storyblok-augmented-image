@@ -21,7 +21,7 @@
       </a>
       <a
         class="image__btn"
-        @click.prevent="$emit('input', '')"
+        @click.prevent="$emit(`input`, ``)"
       >
         <i class="uk-icon-close"/>
       </a>
