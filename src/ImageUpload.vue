@@ -9,7 +9,7 @@
         class="image"
       >
       <input
-        v-model="value"
+        :value="value"
         class="uk-form-small uk-flex-item-auto"
       >
       <a
