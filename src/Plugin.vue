@@ -1,13 +1,13 @@
 <template>
   <div>
-    <image-upload v-model="model.image"/>
+    <ImageUpload v-model="model.image"/>
 
     <div class="blok__comp-container uk-margin-top">
-      <image-detail
+      <ImageDetail
         v-for="(detail, index) in model.details"
         :key="index"
-        :augmented-image="model.image"
         v-model="model.details[index]"
+        :augmented-image="model.image"
         @remove="removeDetail(index)"
       />
     </div>

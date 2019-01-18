@@ -1,6 +1,8 @@
 <template>
   <div class="blok__comp-detail">
-    <p v-if="!augmentedImage">No image selected, please upload an image first.</p>
+    <p v-if="!augmentedImage">
+      No image selected, please upload an image first.
+    </p>
     <template v-else>
       <p>
         <a
@@ -53,8 +55,8 @@
           Title
         </label>
         <input
-          v-model="title"
           :id="`title-${_uid}`"
+          v-model="title"
           class="uk-width-1-1"
           @input="updateValue"
         >
@@ -68,8 +70,8 @@
           Text
         </label>
         <textarea
-          v-model="text"
           :id="`text-${_uid}`"
+          v-model="text"
           class="uk-width-1-1"
           rows="5"
           @input="updateValue"
@@ -80,7 +82,7 @@
         <span class="form__topic">
           Image
         </span>
-        <image-upload
+        <ImageUpload
           v-model="image"
           @input="updateValue"
         />
