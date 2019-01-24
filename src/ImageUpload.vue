@@ -1,32 +1,36 @@
 <template>
   <div class="uk-placeholder uk-margin-bottom-remove uk-margin-top-remove">
-    <div
-      v-if="value"
-      class="uk-flex uk-flex-middle uk-margin-small-bottom"
-    >
-      <img
-        :src="previewImage"
-        class="image"
-      >
+    <div v-if="value.src">
+      <div class="uk-flex uk-flex-middle uk-margin-small-bottom">
+        <img
+          :src="previewImage"
+          class="image"
+        >
+        <input
+          :value="value.src"
+          class="uk-form-small uk-flex-item-auto"
+        >
+        <a
+          :href="value.src"
+          class="image__btn"
+          target="_blank"
+        >
+          <i class="uk-icon-search"/>
+        </a>
+        <a
+          class="image__btn"
+          @click.prevent="$emit(`input`, ``)"
+        >
+          <i class="uk-icon-close"/>
+        </a>
+      </div>
       <input
-        :value="value"
-        class="uk-form-small uk-flex-item-auto"
+        v-model="value.alt"
+        placeholder="Description"
+        class="uk-form-small uk-width-1-1"
       >
-      <a
-        :href="value"
-        class="image__btn"
-        target="_blank"
-      >
-        <i class="uk-icon-search"/>
-      </a>
-      <a
-        class="image__btn"
-        @click.prevent="$emit(`input`, ``)"
-      >
-        <i class="uk-icon-close"/>
-      </a>
     </div>
-    <hr v-if="value">
+    <hr v-if="value.src">
     <label class="uk-form-file uk-button uk-button-small uk-button-primary">
       <span class="util__nobreak">
         <i class="uk-icon-upload"/> Upload new
@@ -50,15 +54,18 @@ export default {
   ],
   props: {
     value: {
-      type: String,
+      type: Object,
       required: true,
-      default: ``,
+      default: () => ({
+        alt: ``,
+        src: ``,
+      }),
     },
   },
   computed: {
     previewImage() {
       // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-      return this.value.replace(`a.storyblok.com`, `img2.storyblok.com/160x90/filters:fill(auto,0)`);
+      return this.value.src.replace(`a.storyblok.com`, `img2.storyblok.com/160x90/filters:fill(auto,0)`);
     },
   },
   methods: {
@@ -70,7 +77,10 @@ export default {
           file: e.target.files[0],
           spaceId: this.plugin.spaceId,
         });
-        this.$emit(`input`, data.pretty_url);
+        this.$emit(`input`, {
+          alt: this.value.alt,
+          src: data.pretty_url,
+        });
       } catch (error) {
         // eslint-disable-next-line no-console
         console.log(error);

@@ -7,7 +7,7 @@
         v-for="(detail, index) in model.details"
         :key="index"
         v-model="model.details[index]"
-        :augmented-image="model.image"
+        :augmented-image="model.image.src"
         @remove="removeDetail(index)"
       />
     </div>
@@ -48,13 +48,19 @@ export default {
     initWith() {
       return {
         details: [],
-        image: ``,
+        image: {
+          alt: ``,
+          src: ``,
+        },
         plugin: `augmented-image`,
       };
     },
     addDetail() {
       this.model.details.push({
-        image: ``,
+        image: {
+          alt: ``,
+          src: ``,
+        },
         text: ``,
         title: ``,
         x: 0,
