@@ -2,11 +2,15 @@ export default async function upload({
   accessToken,
   client,
   file,
+  folderId,
   spaceId,
 }) {
   const response = await client.post(
     `/spaces/${spaceId}/assets`,
-    { filename: file.name },
+    {
+      asset_folder_id: folderId,
+      filename: file.name,
+    },
     { headers: { Authorization: accessToken } },
   );
 

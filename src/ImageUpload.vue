@@ -75,6 +75,7 @@ export default {
           accessToken: this.plugin.options.accessToken,
           client: this.plugin.api.client,
           file: e.target.files[0],
+          folderId: this.plugin.options.folderId,
           spaceId: this.plugin.spaceId,
         });
         this.$emit(`input`, {
